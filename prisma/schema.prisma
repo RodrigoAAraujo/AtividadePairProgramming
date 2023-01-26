@@ -1,0 +1,17 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model cars {
+  id           Int       @id @default(autoincrement())
+  model        String
+  licensePlate String    @unique
+  year         Int
+  color        String
+  createAt     DateTime? @default(now()) @db.Timestamp(6)
+}
